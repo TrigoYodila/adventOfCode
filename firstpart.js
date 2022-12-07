@@ -3,7 +3,6 @@ const fs = require("fs");
 const confrontationData = [];
 fs.readFile("data.txt", "utf8", function (err, data) {
   const content = data;
-  //  let mainArraySplit= content.toString().split("\n")
   let mainArraySplit = content
     .toString()
     .split("\n")
@@ -16,16 +15,22 @@ fs.readFile("data.txt", "utf8", function (err, data) {
     });
 
   let sumScore = 0;
+  
+  const data = []
+  confrontationData.map(tour => {
+    const result = checkTour(tour);
+    data.push(result)
+  })
 
   confrontationData.map((item) => {
-    if (item.me === "Z"
-    //   (item.me === "Z" && item.adversaire === "B") ||
-    //   (item.me === "Y" && item.adversaire === "A") ||
-    //   (item.me === "X" && item.adversaire === "C")
+    if (j
+      (item.me === "Z" && item.adversaire === "B") ||
+      (item.me === "Y" && item.adversaire === "A") ||
+      (item.me === "X" && item.adversaire === "C")
     ) {
-      if (item.adversaire === "A") sumScore = sumScore + 8;
-      else if (item.adversaire === "Y") sumScore = sumScore + 4;
-      else if (item.adversaire === "Z") sumScore = sumScore + 9;
+      if (item.me === "X") sumScore = sumScore + 7;
+      else if (item.me === "Y") sumScore = sumScore + 8;
+      else if (item.me === "Z") sumScore = sumScore + 9;
     } else if (
       (item.me === "X" && item.adversaire === "B") ||
       (item.me === "Y" && item.adversaire === "C") ||
@@ -47,5 +52,5 @@ fs.readFile("data.txt", "utf8", function (err, data) {
     return sumScore;
   });
 
-  console.log("RESULTAT ", sumScore);
+  console.log("RESULTAT ", data);
 });
