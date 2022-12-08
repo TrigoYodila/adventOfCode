@@ -6,6 +6,7 @@ const data = fs.readFileSync('./data.txt',
 
   let pairs = data.toString().split("\n");
   let countAffectationPair = 0
+  let countPair = 0
 
 
 const checkingRepeatFirstPair = (startfirstpair, endfirstpair,startsecondpair, endsecondpair) => {
@@ -25,6 +26,19 @@ const checkingRepeatFirstPair = (startfirstpair, endfirstpair,startsecondpair, e
     return exist
 };
 
+//Part2
+const checkRepeatFirstPair = (startfirstpair, endfirstpair,startsecondpair, endsecondpair) => {
+  const first = []
+  const second = []
+  for (let i = startsecondpair; i <= endsecondpair; i++) {
+    first.push(i)
+  }
+  for (let i = startfirstpair; i <= endfirstpair; i++) {
+    second.push(i);
+  }
+  const filteredArray = first.filter((value) => second.includes(value));
+  return filteredArray
+};
 
   pairs.map((pair)=>{
     const startFirtpair = parseInt(pair.split(",")[0].split("-")[0])
@@ -34,9 +48,13 @@ const checkingRepeatFirstPair = (startfirstpair, endfirstpair,startsecondpair, e
 
     const firstCheckpair = checkingRepeatFirstPair(startFirtpair,endFirtpair,startsecondpair,endsecondpair);
     const secongCheckpair = checkingRepeatFirstPair(startsecondpair,endsecondpair,startFirtpair,endFirtpair);
+
+    const intersectValue = checkRepeatFirstPair(startFirtpair,endFirtpair,startsecondpair,endsecondpair)
     
     if(firstCheckpair || secongCheckpair) countAffectationPair += 1
+    if(intersectValue.length !== 0) countPair += 1
 
   })
-console.log("Nombre de pairs ", countAffectationPair)
-// console.log("Nombre de pairs \n", checkingRepeatFirstPair(5,33,5,5));
+
+console.log("Count 1", countAffectationPair)
+console.log("Count 2", countPair)
