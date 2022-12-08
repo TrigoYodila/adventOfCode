@@ -15,15 +15,9 @@ fs.readFile("data.txt", "utf8", function (err, data) {
     });
 
   let sumScore = 0;
-  
-  const data = []
-  confrontationData.map(tour => {
-    const result = checkTour(tour);
-    data.push(result)
-  })
 
   confrontationData.map((item) => {
-    if (j
+    if (
       (item.me === "Z" && item.adversaire === "B") ||
       (item.me === "Y" && item.adversaire === "A") ||
       (item.me === "X" && item.adversaire === "C")
@@ -54,3 +48,7 @@ fs.readFile("data.txt", "utf8", function (err, data) {
 
   console.log("RESULTAT ", data);
 });
+
+
+
+
